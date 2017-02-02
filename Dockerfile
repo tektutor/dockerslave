@@ -17,6 +17,7 @@ RUN chown jenkins:jenkins /home/jenkins/crm
 COPY . /home/jenkins/crm
 
 RUN apt-get -y update && apt-get -y install openssh-server
+RUN sed -i 's|session required pam_loginuid.so|session optional pam_loginuid.so|g' /etc/pam.d/sshd
 RUN mkdir -p /var/run/sshd
 
 EXPOSE 22
